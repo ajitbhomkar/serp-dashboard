@@ -3,11 +3,5 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "outputDirectory": ".next",
-  "env": {
-    "DATABASE_URL": "@database-url",
-    "GOOGLE_API_KEY": "@google-api-key",
-    "GOOGLE_SEARCH_ENGINE_ID": "@google-search-engine-id",
-    "CRON_SECRET": "@cron-secret"
-  }
+  "outputDirectory": ".next"
 }
