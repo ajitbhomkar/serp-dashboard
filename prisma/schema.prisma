@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Keyword {
+  id        String   @id @default(cuid())
+  keyword   String   @unique
+  targetUrl String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rankings  Ranking[]
+
+  @@map("keywords")
+}
+
+model Ranking {
+  id         String   @id @default(cuid())
+  keywordId  String
+  keyword    Keyword  @relation(fields: [keywordId], references: [id], onDelete: Cascade)
+  position   Int
+  url        String
+  title      String?
+  snippet    String?
+  checkedAt  DateTime @default(now())
+
+  @@index([keywordId, checkedAt])
+  @@map("rankings")
+}
